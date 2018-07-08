@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="home" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<link type="text/css" href="Style.css" rel="Stylesheet" />
+<link rel="shurtcut icon" href="img/shopping.png" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server"> 
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+    <div>
+
+    <div class="header"><h1> سایت فروشگاهی</h1></div>
+
+
+    <div id="menu">
+        <ul>
+            <li>
+                <a href="index.aspx" title="صفحه نخست" target="_self">صفحه نخست</a>
+            </li>
+            <li>
+                <a href="index.aspx" title="محصولات" target="_self">محصولات</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div id="center">
+        <div id="right">
+            <div class="top-right"><h4>دسته بندی محصولات</h4></div>
+            <div class="center-right">
+                <asp:DataList ID="DataList1" runat="server" DataKeyField="cat_id" DataSourceID="ObjectDataSourceforcat">
+                    <ItemTemplate>
+                    <ul>
+                        <li>
+                            <a href="<%# Eval("cat_id","showcat.aspx?cat_id={0}") %>" title="<%# Eval("cat_name") %>" target="_blank"><%# Eval("cat_name") %></a>
+                        </li>
+                    </ul>
+                    </ItemTemplate>
+                </asp:DataList>
+                <asp:ObjectDataSource ID="ObjectDataSourceforcat" runat="server" 
+                    OldValuesParameterFormatString="original_{0}" SelectMethod="GetallDatacat" 
+                    TypeName="catTableAdapters.Tbl_catTableAdapter"></asp:ObjectDataSource>
+            </div>
+            <br />
+            <div class="center-right">javad<br />moradi</div>
+            <br />
+            <div class="center-tabliqat-right-left"><img src="Photo/samsoung.jpg" alt="samsoung" width="100px" height="80px" /></div>
+            <div class="center-tabliqat-right-right"><img src="Photo/panasonic.jpg" width="110px" alt="panasonic" height="80px" /></div>
+            <br />
+            <div class="center-tabliqat-right-left"><img src="Photo/asus.jpg" alt="asus" width="100px" height="80px" /></div>
+            <div class="center-tabliqat-right-right"><img src="Photo/apple.png" alt="apple" width="110px" height="80px" /></div>
+            <br />
+            <div class="center-tabliqat-right-left"><img src="Photo/adata.jpg" alt="adata" width="100px" height="80px" /></div>
+            <div class="center-tabliqat-right-right"><img src="Photo/LG.jpg" alt="lg" width="110px" height="80px" /></div>
+        </div>
+        <div id="left">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>      
+    </div>
+
+
+<table id="balaye-footer">
+    <tr>
+        <td style="width:333;height:50px;">
+            <div style="width:300px;height:60px;border-color:#D8D8D8;border-style:solid;border-width:1px;border-bottom-left-radius:10px;border-top-right-radius:10px; background-image:url(photo/background-menu.jpg);margin-top:5px;margin-left:40px;"></div>
+        </td>
+        <td style="width:333;height:50px;">
+            <div style="width:300px;height:60px;border-color:#D8D8D8;border-style:solid;border-width:1px;border-bottom-left-radius:10px;border-top-right-radius:10px; background-image:url(photo/background-menu.jpg);margin-top:5px;margin-left:40px;">javad</div>
+        </td>
+        <td align="char" dir="rtl">
+            <div style="width:300px;height:60px;border-color:#D8D8D8;border-style:solid;border-width:1px;border-bottom-left-radius:10px;border-top-right-radius:10px; background-image:url(photo/background-menu.jpg);margin-top:5px;margin-left:40px;">
+                <h3 align="center">آخرین کالاها</h3></div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:333;height:50px;">
+          
+        </td>
+        <td style="width:333;height:50px;">
+          
+        </td>
+        <td align="char" dir="rtl">
+        <div class="akharin-kala">
+            <asp:DataList ID="DataList2" runat="server" DataKeyField="kala_id" 
+                DataSourceID="ObjectDataSourceTop10">
+                <ItemTemplate>
+                <ul>
+                    <li>
+                        <a href="<%# Eval("kala_id","showkala.aspx?kala_id={0}") %>" target="_blank" title="<%# Eval("kala_name") %>"><%# Eval("kala_name") %></a>
+                    </li>
+                </ul>
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:ObjectDataSource ID="ObjectDataSourceTop10" runat="server" 
+                OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataTOP10kala" 
+                TypeName="kalaTableAdapters.Tbl_kalaTableAdapter"></asp:ObjectDataSource>
+            <asp:ObjectDataSource ID="ObjectDataSourceforakharinkalaha" runat="server">
+            </asp:ObjectDataSource>
+        </div> 
+        </td>
+    </tr>
+    <tr>
+        <td style="width:333;height:150px;">
+          
+        </td>
+        <td style="width:333;height:150px;">
+          
+        </td>
+        <td align="char" dir="rtl">
+          
+        </td>
+    </tr>
+</table>
+
+
+
+
+<div id="footer">این سایت برای تست است</div>
+</div>
+</form>
+</body>
+</html>
